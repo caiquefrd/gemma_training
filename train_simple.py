@@ -2,17 +2,23 @@ from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 import torch
+import json
+
+with open("data/train.jsonl") as f:
+    data = [json.loads(line) for line in f]
+
+ds = Dataset.from_list(data)
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
 # 1. Load dataset
-ds = load_dataset(
-    "json",
-    data_files="data/train.jsonl",
-    split="train",
-    cache_dir="/content/cache"
-)
+# ds = load_dataset(
+#     "json",
+#     data_files="data/train.jsonl",
+#     split="train",
+#     cache_dir="/content/cache"
+# )
 
 
 def prep(ex):
