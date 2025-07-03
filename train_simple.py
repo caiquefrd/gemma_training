@@ -26,7 +26,7 @@ def prep(ex):
     o = f"Latitude: {ex['lat']}, Longitude: {ex['lon']}"
     return {"text": p + o}
 
-ds = ds["train"].map(prep)
+ds = ds.map(prep)
 
 # 2. Load tokenizer & model with 4-bit quantization
 bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")
