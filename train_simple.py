@@ -9,7 +9,7 @@ with open("data/train.jsonl") as f:
 
 ds = Dataset.from_list(data)
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cuda" if torch.cuda.is_available() and torch.cuda.device_count() > 0 else "cpu"
 print(f"Using device: {device}")
 
 # 1. Load dataset
@@ -36,7 +36,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     quantization_config=bnb,
-    device_map={"": device},  # ensures proper fallback
+    device_map="auto",
 )
 
 
@@ -75,7 +75,7 @@ training_args = TrainingArguments(
     num_train_epochs=5,
     learning_rate=5e-5,
     fp16=torch.cuda.is_available(),
-    bf16=not torch.cuda.is_available(),
+    # bf16=not torch.cuda.is_available(),
     save_strategy="epoch",
     logging_dir="logs",
     logging_steps=10,
