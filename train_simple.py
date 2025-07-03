@@ -7,7 +7,13 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
 # 1. Load dataset
-ds = load_dataset("json", data_files="data/train.jsonl", split="train")
+ds = load_dataset(
+    "json",
+    data_files="data/train.jsonl",
+    split="train",
+    cache_dir="/content/cache"
+)
+
 
 def prep(ex):
     p = f"Place: {ex['name']}\n"
