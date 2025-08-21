@@ -1,26 +1,25 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel, PeftConfig
+
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+import json
 
-# Caminho do adaptador LoRA
-peft_model_path = "./geo_peft"
+# Path to trained model
+model_path = "./geo_peft"
 
-# 1. Carrega a config do adaptador para saber o modelo base original
-config = PeftConfig.from_pretrained(peft_model_path)
+# Load model and tokenizer
+model = AutoModelForSequenceClassification.from_pretrained(model_path)
+tokenizer = AutoTokenizer.from_pretrained(model_path)
 
-# 2. Carrega o modelo base original
-base_model = AutoModelForCausalLM.from_pretrained(config.base_model_name_or_path, device_map="auto")
+# Load id2label mapping
+id2label = model.config.id2label
 
-# 3. Aplica o adaptador LoRA ao modelo base
-model = PeftModel.from_pretrained(base_model, peft_model_path)
+# Example description to classify
+desc = "Importante polo tecnológico e industrial do Vale do Paraíba, conhecido por abrigar centros de pesquisa como o INPE e empresas do setor aeroespacial."
 
-# 4. Carrega o tokenizer original
-tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
+inputs = tokenizer(desc, return_tensors="pt", truncation=True, padding=True, max_length=128)
+with torch.no_grad():
+	outputs = model(**inputs)
+	pred = torch.argmax(outputs.logits, dim=1).item()
 
-# 5. Define o prompt
-prompt = "Place: São José dos Campos\nLatitude: \nLongitude:"
-
-# 6. Geração do texto
-inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-output = model.generate(**inputs, max_new_tokens=10)
-print(tokenizer.decode(output[0], skip_special_tokens=True))
+place_name = id2label[str(pred)] if str(pred) in id2label else id2label[pred]
+print(f"Predicted place: {place_name}")

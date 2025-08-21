@@ -1,88 +1,59 @@
+
 from datasets import Dataset
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from transformers import AutoTokenizer, Trainer, TrainingArguments, BertForSequenceClassification
 import torch
 import json
 
+# Load data
 with open("data/train.jsonl") as f:
     data = [json.loads(line) for line in f]
 
-ds = Dataset.from_list(data)
+# Get all unique place names
+labels = sorted(list({ex["name"] for ex in data}))
+label2id = {label: i for i, label in enumerate(labels)}
+id2label = {i: label for label, i in label2id.items()}
 
-device = "cuda" if torch.cuda.is_available() and torch.cuda.device_count() > 0 else "cpu"
-print(f"Using device: {device}")
-
-# 1. Load dataset
-# ds = load_dataset(
-#     "json",
-#     data_files="data/train.jsonl",
-#     split="train",
-#     cache_dir="/content/cache"
-# )
-
-
+# Prepare dataset for classification
 def prep(ex):
-    p = f"Place: {ex['name']}\n"
-    o = f"Latitude: {ex['lat']}, Longitude: {ex['lon']}"
-    return {"text": p + o}
+    return {
+        "text": ex["desc"],
+        "label": label2id[ex["name"]]
+    }
 
-ds = ds.map(prep)
+ds = Dataset.from_list([prep(ex) for ex in data])
 
-# 2. Load tokenizer & model with 4-bit quantization
-bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")
-model_id = "google/gemma-2b"
-
+model_id = "bert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    quantization_config=bnb,
-    device_map="auto",
-)
 
-
-# 3. Apply LoRA config
-model = prepare_model_for_kbit_training(model)
-
-lora_cfg = LoraConfig(
-    r=8,
-    lora_alpha=16,
-    target_modules=["q_proj", "v_proj"],
-    bias="none",
-    task_type="CAUSAL_LM"
-)
-model = get_peft_model(model, lora_cfg)
-
-# 4. Tokenize dataset
-def tok(examples):
-    model_inputs = tokenizer(
-        examples["text"],
+def tok(batch):
+    enc = tokenizer(
+        batch["text"],
         max_length=128,
         truncation=True,
-        padding="max_length",
-        return_tensors="pt",
+        padding="max_length"
     )
-    labels = model_inputs["input_ids"].clone()
-    model_inputs["labels"] = labels
-    return model_inputs
+    enc["labels"] = batch["label"]
+    return enc
 
-ds = ds.map(tok, batched=True, remove_columns=ds.column_names)
+ds = ds.map(tok, batched=True)
 
-# 5. Training
+model = BertForSequenceClassification.from_pretrained(
+    model_id,
+    num_labels=len(labels),
+    id2label=id2label,
+    label2id=label2id
+)
+
 training_args = TrainingArguments(
     output_dir="geo_peft",
-    per_device_train_batch_size=1,
-    gradient_accumulation_steps=1,
+    per_device_train_batch_size=4,
     num_train_epochs=5,
     learning_rate=5e-5,
     fp16=torch.cuda.is_available(),
-    # bf16=not torch.cuda.is_available(),
     save_strategy="epoch",
     logging_dir="logs",
     logging_steps=10,
 )
-
-print("CUDA Available:", torch.cuda.is_available())
-print("Device:", torch.device("cuda" if torch.cuda.is_available() else "cpu"))
 
 trainer = Trainer(
     model=model,
