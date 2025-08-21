@@ -1,13 +1,30 @@
-{"name": "São José dos Campos", "lat": "-23.220218", "lon": "-45.897124", "desc": ""}
-{"name": "Jacareí", "lat": "-23.304815", "lon": "-45.966175", "desc": ""}
-{"name": "São Paulo", "lat": "-23.550520", "lon": "-46.633308", "desc": ""}
-{"name": "Campinas", "lat": "-22.906847", "lon": "-47.060083", "desc": ""}
-{"name": "Sorocaba", "lat": "-23.501772", "lon": "-47.458299", "desc": ""}
-{"name": "Ribeirão Preto", "lat": "-21.177439", "lon": "-47.810327", "desc": ""}
-{"name": "São Carlos", "lat": "-22.005555", "lon": "-47.897744", "desc": ""}
-{"name": "Piracicaba", "lat": "-22.725000", "lon": "-47.650000", "desc": ""}
-{"name": "Bauru", "lat": "-22.314900", "lon": "-49.059300", "desc": ""}
-{"name": "São José do Rio Preto", "lat": "-20.819200", "lon": "-49.379400", "desc": ""}
-{"name": "Franca", "lat": "-20.538000", "lon": "-47.403000", "desc": ""}
-{"name": "Taubaté", "lat": "-23.024000", "lon": "-45.558000", "desc": ""}
-{"name": "Mogi das Cruzes", "lat": "-23.520000", "lon": "-46.185000", "desc": ""}
+{"name": "São José dos Campos", "lat": "-23.220218", "lon": "-45.897124", "desc": "Importante polo tecnológico e industrial do Vale do Paraíba, conhecido por abrigar centros de pesquisa como o INPE e empresas do setor aeroespacial."}
+{"name": "Jacareí", "lat": "-23.304815", "lon": "-45.966175", "desc": "Cidade vizinha a São José dos Campos, com economia baseada na indústria e serviços, além de ter destaque na produção de papel e celulose."}
+{"name": "São Paulo", "lat": "-23.550520", "lon": "-46.633308", "desc": "Maior cidade do Brasil e centro financeiro da América Latina, conhecida por sua diversidade cultural, gastronômica e vida noturna vibrante."}
+{"name": "Campinas", "lat": "-22.906847", "lon": "-47.060083", "desc": "Importante centro universitário e tecnológico do interior paulista, destacando-se pela Unicamp e pelo polo de tecnologia."}
+{"name": "Sorocaba", "lat": "-23.501772", "lon": "-47.458299", "desc": "Cidade em crescimento acelerado, com forte presença industrial e bons índices de desenvolvimento humano."}
+{"name": "Ribeirão Preto", "lat": "-21.177439", "lon": "-47.810327", "desc": "Conhecida como a 'Capital do Agronegócio', é também famosa pela produção de cerveja e pela força cultural e universitária."}
+{"name": "São Carlos", "lat": "-22.005555", "lon": "-47.897744", "desc": "Reconhecida como 'Capital da Tecnologia', abriga universidades renomadas como a USP e a UFSCar, além de centros de pesquisa."}
+{"name": "Piracicaba", "lat": "-22.725000", "lon": "-47.650000", "desc": "Tradicional polo sucroalcooleiro, com destaque para a produção de açúcar e etanol, além de seu famoso rio Piracicaba."}
+{"name": "Bauru", "lat": "-22.314900", "lon": "-49.059300", "desc": "Cidade universitária do interior, conhecida pelo famoso sanduíche 'Bauru' e por ser um centro regional de serviços e educação."}
+{"name": "São José do Rio Preto", "lat": "-20.819200", "lon": "-49.379400", "desc": "Importante polo de saúde e comércio no interior paulista, com grande influência na região noroeste do estado."}
+{"name": "Franca", "lat": "-20.538000", "lon": "-47.403000", "desc": "Reconhecida como a 'Capital Nacional do Calçado', especialmente de calçados masculinos, com forte economia industrial."}
+{"name": "Taubaté", "lat": "-23.024000", "lon": "-45.558000", "desc": "Cidade histórica do Vale do Paraíba, berço de Monteiro Lobato, com destaque para a indústria automobilística."}
+{"name": "Mogi das Cruzes", "lat": "-23.520000", "lon": "-46.185000", "desc": "Cidade da Grande São Paulo com forte tradição agrícola, especialmente na produção de hortifrutigranjeiros, além de crescimento urbano acelerado."}
+{"name": "Guarulhos", "lat": "-23.454444", "lon": "-46.533333", "desc": "Segunda cidade mais populosa de São Paulo, conhecida pelo Aeroporto Internacional de Cumbica e pela forte atividade industrial."}
+{"name": "Santos", "lat": "-23.960833", "lon": "-46.333611", "desc": "Importante cidade portuária, com o maior porto da América Latina, além de belas praias e forte atividade turística."}
+{"name": "Osasco", "lat": "-23.532000", "lon": "-46.791000", "desc": "Cidade da Região Metropolitana de São Paulo, com grande concentração de comércio e empresas de serviços."}
+{"name": "Diadema", "lat": "-23.686111", "lon": "-46.620000", "desc": "Município do ABC Paulista, com forte presença da indústria química e automotiva."}
+{"name": "São Bernardo do Campo", "lat": "-23.693889", "lon": "-46.565000", "desc": "Conhecida como o berço da indústria automobilística no Brasil, faz parte do ABC Paulista."}
+{"name": "Santo André", "lat": "-23.663889", "lon": "-46.538333", "desc": "Importante centro industrial e de serviços do ABC Paulista, com forte tradição cultural e esportiva."}
+{"name": "Jundiaí", "lat": "-23.185700", "lon": "-46.897800", "desc": "Cidade em crescimento, conhecida pela produção de uvas e vinhos, além de forte setor logístico."}
+{"name": "Marília", "lat": "-22.217100", "lon": "-49.950100", "desc": "Importante centro regional do interior, com economia baseada em alimentos, saúde e universidades."}
+{"name": "Araraquara", "lat": "-21.793900", "lon": "-48.176600", "desc": "Conhecida como 'Morada do Sol', tem destaque na cana-de-açúcar, indústria e vida universitária."}
+{"name": "Presidente Prudente", "lat": "-22.121000", "lon": "-51.388900", "desc": "Polo econômico e educacional do oeste paulista, com destaque no comércio e serviços."}
+{"name": "Limeira", "lat": "-22.564700", "lon": "-47.401700", "desc": "Reconhecida como a 'Capital da Joia Folheada', com forte presença industrial e agrícola."}
+{"name": "Itu", "lat": "-23.264200", "lon": "-47.299300", "desc": "Cidade histórica famosa pelo turismo, pelas igrejas coloniais e pelo humor associado às 'coisas grandes'."}
+{"name": "Americana", "lat": "-22.739100", "lon": "-47.331100", "desc": "Cidade com tradição na indústria têxtil e com destaque para o setor industrial diversificado."}
+{"name": "Caraguatatuba", "lat": "-23.622900", "lon": "-45.412000", "desc": "Destino turístico no Litoral Norte, com belas praias e natureza preservada."}
+{"name": "Ubatuba", "lat": "-23.433200", "lon": "-45.083300", "desc": "Famosa por suas mais de 100 praias e pela Mata Atlântica preservada, é um dos destinos mais procurados do litoral paulista."}
+{"name": "Ilhabela", "lat": "-23.778900", "lon": "-45.358100", "desc": "Ilha turística conhecida por praias paradisíacas, cachoeiras e esportes náuticos."}
+{"name": "Atibaia", "lat": "-23.117100", "lon": "-46.550000", "desc": "Cidade turística famosa pelo cultivo de morangos e pelo turismo de aventura."}
