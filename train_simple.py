@@ -25,7 +25,7 @@ examples = [prep(ex) for ex in data]
 
 # Validation split (80% train, 20% val)
 from sklearn.model_selection import train_test_split
-train_examples, val_examples = train_test_split(examples, test_size=30, random_state=42, stratify=[ex["label"] for ex in examples])
+train_examples, val_examples = train_test_split(examples, test_size=0.2, random_state=42)
 
 train_ds = Dataset.from_list(train_examples)
 val_ds = Dataset.from_list(val_examples)
