@@ -1,6 +1,3 @@
 transformers
 datasets
-peft
-bitsandbytes
-accelerate
 huggingface_hub

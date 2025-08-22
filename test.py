@@ -4,7 +4,7 @@ import torch
 import json
 
 # Path to trained model
-model_path = "./geo_peft"
+model_path = "./geocoding"
 
 # Load model and tokenizer
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
