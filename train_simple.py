@@ -74,5 +74,5 @@ trainer = Trainer(
 )
 
 trainer.train()
-model.save_pretrained("geo_peft")
-tokenizer.save_pretrained("geo_peft")
+model.save_pretrained("geocoding")
+tokenizer.save_pretrained("geocoding")
